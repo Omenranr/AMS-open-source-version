@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.1.3.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+  <link rel="icon" type="image/png" href="/static/logo.png">
+  <link rel="stylesheet" href="/static/style2.css">
+  <title>AMS - OCP</title>
+<style>
+#map {
+    position: relative;
+    padding-bottom: 76%;
+  }
+</style></head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container"> <a class="navbar-brand" style="color:#76A53B" href="#">
+       <!-- <i class="fa d-inline fa-lg fa-stop-circle"></i>-->
+        <img src="/static/ocp_logo.svg" width="33" height="40">
+        <b>AMS</b>
+      </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar4">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbar4">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"> <a class="nav-link" href="#">Features</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="#">Pricing</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="#">About</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="#">FAQ</a> </li>
+        </ul> <a class="btn navbar-btn ml-md-2 btn-light">Contact us</a>
+      </div>
+    </div>
+  </nav>
+  <div class="text-center py-3 btn-primary"></div>
+  <div>
+    <div>
+      <div class="row m-0 p-0">
+        <div class="col-md-4 h-100">
+          <form class="pl-2 pt-2" style="opacity: 0.5;">
+            <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"> </li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"> </li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"> </li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active"> <img class="d-block w-100" src="/static/img/ndvi1.jpg" height="260">
+                  <div class="carousel-caption">
+                    <h5 class="m-0 ">AMS</h5>
+                    <p>with indicators</p>
+                  </div>
+                </div>
+                <div class="carousel-item "> <img class="d-block w-100" src="/static/img/ndvi2.png" height="260">
+                  <div class="carousel-caption">
+                    <h5 class="m-0">AMS</h5>
+                    <p>with indicators</p>
+                  </div>
+                </div>
+                <div class="carousel-item"> <img class="d-block   w-100" src="/static/img/ndvi3.jpg" height="260">
+                  <div class="carousel-caption">
+                    <h5 class="m-0 ">AMS</h5>
+                    <p>with indicators</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="list-group">
+              <h3 href="#" class="list-group-item list-group-item-action my-2">AMS Explorer</h3>
+            </div>
+            <div class="form-group">
+              <label>Indicators</label>
+              <select id="ind" name="indicator" class="selectpicker form-control" data-live-search="true">
+                <option data-tokens="ketchup mustard" value="1" selected>NDVI</option>
+                <option data-tokens="mustard" value="2">LANDUSE</option>
+                <option data-tokens="frosting"value="3" disabled>MTCI</option>
+                <option data-tokens="frosting" value="4" disabled>EVI</option>
+                <option data-tokens="frosting" value="5" disabled>CHIRPS</option>
+              </select>
+              <small class="form-text text-muted">Choose your inicatotrs.</small>
+            </div>
+            <div class="form-group row">
+              <div class="col col-md-6">
+                <label for="example-date-input">Date Debut</label>
+                <input class="form-control" type="date" value="2017-08-19" id="example-date-input">
+              </div>
+              <div class="col col-md-6">
+                <label for="example-date-input">Date Fin</label>
+                <input class="form-control" type="date" value="2017-08-19" id="example-date-input">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Region</label>
+              <select id="selectBox" name="selectreg"  class="selectpicker form-control" data-live-search="true">
+                <option data-tokens="ketchup mustard">Selectionnez votre region</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Province</label>
+              <select  id="province" name="selectprov" class="selectpicker form-control" data-live-search="true">
+                <option value="-1" data-tokens="ketchup mustard" >Selectionnez votre province</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Commune</label>
+              <select class="selectpicker form-control" data-live-search="true"  disabled>
+                <option data-tokens="ketchup mustard">Selectionnez votre commune</option>
+              </select>
+            </div>
+          </form>
+                      <button   id="apply" class="btn btn-primary w-100">Apply</button>
+
+        </div>
+        <div class="col-md-8 h-100 p-2">
+            <!--<iframe width="100%" height="400" src="https://maps.google.com/maps?q=San%20Francisco&amp;z=12&amp;t=k&amp;output=embed" scrolling="no" frameborder="0">
+            </iframe>  -->
+        <div id="map"></div>
+            <div class="container1" id='loadingmessage' style='display:none'>
+            <div class="box one"></div>
+            <div class="box two"></div>
+            <div class="box three"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- Bootstrap CSS -->
+ <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+ <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>  -->
+   <script src="/static/script.js"></script>
+    <script src="/static/data.js"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxHidKIVd53wvk-ZxVpBLuvVrkyZJBV9M&libraries=drawing&callback=initMap"
+        async defer>
+    </script>
+
+
+ <script>
+        var initMap = function () {
+            initialize();
+        };
+
+        $("#apply").click(function () {
+            console.log("test"+$("#province").val())
+             $('#loadingmessage').show();
+            $.post("/getJson",
+                {
+                    indicator: $("#ind").val(),
+                    selectreg: $("#selectBox").val(),
+                    selectprov: $("#province").val(),
+                },
+                function (data, status) {
+                    addLayer(data.mapid, data.token)
+                    $('#loadingmessage').hide();
+                });
+        });
+
+/*
+        $("#ind").change(function () {
+            $.post("/getJson",
+                {
+                    selectpicker: $("#ind").val(),
+                    selectreg: $("#selectBox").val(),
+                },
+                function (data, status) {
+                    addLayer(data.mapid, data.token)
+                });
+        });
+*/
+
+        $.each(regions, function (key, value) {
+            $('#selectBox')
+                .append($("<option></option>")
+                    .attr("value", key)
+                    .text(value.name));
+        });
+
+
+        $(document).ready(function () {
+            $("#selectBox").change(function () {
+                var val = $(this).val();
+                var cr = regions[val].code
+                //  var id = parseInt(val, 16);
+                $('#province').empty();
+                  $("#province").html('<option data-tokens="ketchup mustard" value="-1">Selectionnez votre province</option>')
+                for(let i=0; i<provinces.length;i++){
+                    if (cr == provinces[i].code.substr(0,3)) {
+                    //console.log("cr ="+cr+ " code pr :"+ provinces[i].code)
+                    var o = new Option(provinces[i].name, parseInt(provinces[i].id, 16));
+                    $("#province").append(o);
+                }
+                }
+                $('.selectpicker').selectpicker('refresh');
+            });
+        });
+
+    </script>
+</body>
+
+</html>

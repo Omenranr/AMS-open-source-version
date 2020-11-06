@@ -1,0 +1,36 @@
+#map {
+    position: relative;
+    padding-bottom: 50%;
+    height: 0;
+    overflow: hidden;
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  img{
+    width: 1.5vw;
+    vertical-align: middle;
+    border-width: 0px;
+}
+.logo{
+    width: 2.5vw;
+}
+.divider{
+    height: 45px;
+    width: 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.logo-heading {
+    color: #FFFFFF;
+    font-size: 18px;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}

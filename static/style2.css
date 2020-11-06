@@ -1,0 +1,50 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    }
+    .container1 {
+        position: absolute;
+        left: 35%;
+        top: 50%;
+        text-align: center;
+    }
+    .box {
+    position: relative;
+    display: inline-block;
+    top: 50%;
+    left: 45%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 30px;
+    animation: bubble 3s ease-in-out infinite;
+    }
+    .one {
+    background-color: yellow;
+    animation-delay: 0.2s;
+    }
+    .two {
+    background-color: tomato;
+    animation-delay: 0.4s;
+    }
+    .three {
+    background-color: red;
+    animation-delay: 0.6s;
+    }
+    
+    @keyframes bubble {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    
+    50% {
+      transform: scale(1.7);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+} 
